@@ -28,12 +28,8 @@ public class RedisTestImpl{
         final String value = "value";
         ValueOperations valueOperations = redisTemplate.opsForValue();
         valueOperations.set(key, value);
-
         Object o = valueOperations.get(key);
         logger.info("输出内容为{}", o);
-
-
-
     }
 
 }

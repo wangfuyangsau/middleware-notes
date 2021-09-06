@@ -46,7 +46,7 @@ public class CachePassService {
                     valueOperations.set(itemKey,objectMapper.writeValueAsString(item));
                 }else{
                     logger.warn("数据库中没有查找到，默认设置为空值");
-                    valueOperations.set(itemKey,"",30L, TimeUnit.MINUTES);
+                    valueOperations.set(itemKey,"",30L, TimeUnit.SECONDS);
                 }
 
             }
