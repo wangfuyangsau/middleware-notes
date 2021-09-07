@@ -1,8 +1,7 @@
 package org.example.middleware.controller.redis;
 
 
-import org.apache.ibatis.cache.Cache;
-import org.example.middleware.service.redis.CachePassService;
+import org.example.middleware.service.CachePassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

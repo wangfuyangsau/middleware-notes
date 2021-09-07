@@ -1,4 +1,4 @@
-package org.example.middleware.service.redis.redpacket.impl;
+package org.example.middleware.service.redpacket.impl;
 
 import org.example.middleware.dto.RedPacketDTO;
 import org.example.middleware.mapper.red.RedDetailMapper;
@@ -6,7 +6,8 @@ import org.example.middleware.mapper.red.RedRecordMapper;
 import org.example.middleware.mapper.red.RedRobRecordMapper;
 import org.example.middleware.pojo.red.RedDetail;
 import org.example.middleware.pojo.red.RedRecord;
-import org.example.middleware.service.redis.redpacket.IRedService;
+import org.example.middleware.pojo.red.RedRobRecord;
+import org.example.middleware.service.redpacket.IRedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,13 @@ public class IRedServiceImpl  implements IRedService {
     @Async
     @Override
     public void recordRobRedPacket(Integer userId, String redId, BigDecimal amount) throws Exception {
+        RedRobRecord redRobRecord = new RedRobRecord();
+        redRobRecord.setUserId(userId);
+        redRobRecord.setRedPacket(redId);
+        redRobRecord.setAmount(amount);
+        redRobRecord.setRobTime(new Date());
+        redRobRecordMapper.insertSelective(redRobRecord);
+
 
     }
 }

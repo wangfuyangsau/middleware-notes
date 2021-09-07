@@ -1,4 +1,4 @@
-package org.example.middleware.service.redis.redpacket;
+package org.example.middleware.service.redpacket;
 
 import org.example.middleware.dto.RedPacketDTO;
 
