@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@EnableAsync
 public class IRedPacketServiceImpl implements IRedPacketService {
     private static final String kerPre= "redis:red:packet:";
 

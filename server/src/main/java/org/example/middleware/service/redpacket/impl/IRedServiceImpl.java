@@ -10,6 +10,7 @@ import org.example.middleware.pojo.red.RedRobRecord;
 import org.example.middleware.service.redpacket.IRedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 @Service
+@EnableAsync
 public class IRedServiceImpl  implements IRedService {
 
     @Autowired
