@@ -1,5 +1,6 @@
 package redis;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.middleware.publisher.LoginPubulisher;
 import org.hibernate.validator.internal.constraintvalidators.bv.past.PastValidatorForReadableInstant;
 import org.junit.Test;
@@ -20,8 +21,10 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 public class BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
     @Autowired
-    private RedisTemplate redisTemplate;
+    protected RedisTemplate redisTemplate;
     @Autowired
-    private LoginPubulisher pubulisher;
+    protected LoginPubulisher pubulisher;
+    @Autowired
+    protected ObjectMapper objectMapper;
 
 }

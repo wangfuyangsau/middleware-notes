@@ -1,20 +1,17 @@
 package org.example.middleware.dto;
 
 import lombok.Data;
-import lombok.ToString;
-import org.springframework.context.ApplicationEvent;
 
 import java.io.Serializable;
-public class LoginEvent extends ApplicationEvent implements Serializable {
+
+@Data
+public class MessageDTO implements Serializable {
     private String userName;
     private String loginTime;
     private String loginIp;
-    public LoginEvent(Object source, String userName, String loginTime, String loginIp) {
 
-        super(source);
-        this.loginIp=loginIp;
-        this.loginTime=loginTime;
-        this.userName=userName;
+    public MessageDTO() {
+
     }
 
     public String getUserName() {
@@ -43,8 +40,10 @@ public class LoginEvent extends ApplicationEvent implements Serializable {
 
     @Override
     public String toString() {
-        return "loginEvent{" +
-                "source=" + source +
+        return "MessageDTO{" +
+                "userName='" + userName + '\'' +
+                ", loginTime='" + loginTime + '\'' +
+                ", loginIp='" + loginIp + '\'' +
                 '}';
     }
 }
