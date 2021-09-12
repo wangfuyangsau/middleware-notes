@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class ModelPubisher {
             rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
             rabbitTemplate.setExchange(env.getProperty("mq.basic.info.exchange.name"));
             rabbitTemplate.setRoutingKey(env.getProperty("mq.basic.info.routing.key.name"));
-            //将字符串二进制
-            Message msg = MessageBuilder.withBody(message.getBytes(StandardCharsets.UTF_8)).build();
+            //将字符串二进制,设置消息持久化，防止消息丢失
+            Message msg = MessageBuilder.withBody(message.getBytes(StandardCharsets.UTF_8)).setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
             rabbitTemplate.convertAndSend(msg);
             logger.info("send msg");
         }

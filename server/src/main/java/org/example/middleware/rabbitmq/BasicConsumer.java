@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 
 @Component
 public class BasicConsumer {
-    private static final Logger logger = LoggerFactory.getLogger(RabbitMqConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(BasicConsumer.class);
     @Autowired
     public ObjectMapper objectMapper;
     //监听并消费队列中消息，这里采用单一监听者容器实例

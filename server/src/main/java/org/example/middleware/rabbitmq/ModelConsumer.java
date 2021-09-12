@@ -17,25 +17,25 @@ public class ModelConsumer {
     private static final Logger logger = LoggerFactory.getLogger(RabbitMqConfig.class);
     @Autowired
     public ObjectMapper objectMapper;
-    //监听并消费队列中消息，这里采用单一监听者容器实例
-    @RabbitListener(queues = "${mq.basic.info.queue.name}",containerFactory = "singleListenerContainer")
+    //监听并消费队列中消息
+    @RabbitListener(queues = "${mq.basic.info.queue.name}",containerFactory = "singleListenerContainerAuto")
     public void cinsimeMsg(@Payload byte[]msg){
         try {
             MessageDTO loginEvent = objectMapper.readValue(msg, MessageDTO.class);
 
-            logger.info("消息1*:"+loginEvent.toString());
+            logger.info("自动确认消息1*:"+loginEvent.toString());
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("消息异常1");
         }
     }
 
-    @RabbitListener(queues = "${mq.basic.info.queue2.name}",containerFactory = "singleListenerContainer")
+    @RabbitListener(queues = "${mq.basic.info.queue2.name}",containerFactory = "singleListenerContainerAuto")
     public void cinsimeMsg2(@Payload byte[]msg){
         try {
             MessageDTO loginEvent = objectMapper.readValue(msg, MessageDTO.class);
 
-            logger.info("消息2#:"+loginEvent.toString());
+            logger.info("自动确认消息2#:"+loginEvent.toString());
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("消息异常2");
