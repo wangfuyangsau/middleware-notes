@@ -66,7 +66,7 @@ public class IRedPacketServiceImpl implements IRedPacketService {
             //有，从列表中去一个,上分布式锁，保证用户只能抢到1次
             String lockKey = redId+userId+"-lock";
             Boolean lock = valueOperations.setIfAbsent(lockKey, redId);
-            redisTemplate.expire(lockKey,24L,TimeUnit.HOURS);
+            redisTemplate.expire(lockKey,24L,TimeUnit.HOURS);//设置合理的过期时间，防止死锁
             try {
                 if(lock){
                     Object value = redisTemplate.opsForList().rightPop(redId);
@@ -77,6 +77,7 @@ public class IRedPacketServiceImpl implements IRedPacketService {
                         valueOperations.set(redTotalKey,currToal-1);
                         valueOperations.set(redId+userId+":rob",value.toString(),24L, TimeUnit.HOURS);
                         redService.recordRobRedPacket(userId,redId,new BigDecimal(value.toString()));
+                        redisTemplate.delete(lockKey);//核心业务处理完成，删除锁定。当然在当前的业务下不能，因为是抢红包。
                         return new BigDecimal(value.toString());
                     }
                 }

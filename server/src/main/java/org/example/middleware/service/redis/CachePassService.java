@@ -1,4 +1,4 @@
-package org.example.middleware.service;
+package org.example.middleware.service.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Strings;
