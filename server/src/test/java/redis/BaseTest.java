@@ -19,7 +19,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 @SpringApplicationConfiguration(BaseTest.class)
 @ComponentScan("org.example.middleware")
 public class BaseTest {
-    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    public static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
     @Autowired
     protected RedisTemplate redisTemplate;
     @Autowired
